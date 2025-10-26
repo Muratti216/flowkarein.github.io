@@ -5,34 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Murat Can Sarıyıldız | Game Designer</title>
   <style>
-    /* Grafiksel başlık için Bebas Neue, okunabilir metinler için Roboto */
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400&display=swap');
+    /* Shinkawa'nın keskin UI tasarımlarından ilham alan font */
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
 
     :root {
-      /* Nagai'nin gündüz/sahil paletinden ilham alan renkler */
-      --sand: #f4f1de;      /* Sıcak, kum rengi bir arka plan */
-      --ink: #3d405b;       /* Sert siyahtan daha yumuşak, mürekkep rengi */
-      --dusk: #e07a5f;      /* Gün batımını andıran sıcak, huzurlu bir vurgu rengi */
-      --highlight: #f2cc8f; /* Butonlar için ek bir ışık tonu */
+      /* Hiroshi Nagai'nin gün batımı paleti */
+      --sky-glow: #fde4a3;
+      --sunset: #ff9a8d;
+      --ocean: #4b6cb7;
+      
+      /* Yoji Shinkawa'nın mürekkep ve kağıt paleti */
+      --paper: rgba(244, 241, 222, 0.85); /* Hafif şeffaf kağıt */
+      --ink: #2a2a2a; /* Tam siyah değil, soluk mürekkep */
+      --accent-red: #c94242; /* Shinkawa'nın imza kırmızısı */
     }
 
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: var(--sand);
-      color: var(--ink);
       margin: 0;
-      padding: 0 20px;
+      padding: 20px;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      
+      /* Nagai'nin ikonik gradyan arka planı */
+      background: linear-gradient(180deg, var(--sky-glow), var(--sunset), var(--ocean));
       overflow: hidden;
       position: relative;
     }
 
-    /* Shinkawa'nın çizimlerindeki kağıt dokusunu andıran grain efekti */
+    /* Shinkawa'nın fırça darbelerini andıran doku efekti */
     body::before {
       content: "";
       position: absolute;
@@ -40,35 +43,48 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
-      opacity: 0.25; /* Açık temada daha belirgin ama yine de zarif */
+      background-image: url("https://www.transparenttextures.com/patterns/washi.png"); /* Japon kağıdı dokusu */
+      opacity: 0.2;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
+    }
+
+    .content-box {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 2rem 3rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px); /* Arka planı hafifçe bulanıklaştırır */
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
-      letter-spacing: 4px;
+      font-size: 3rem;
+      letter-spacing: 3px;
       color: var(--ink);
       text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--dusk);
+      margin: 0 0 0.5rem 0;
       padding-bottom: 0.5rem;
+      /* Shinkawa'nın grafiksel vurgu çizgisi */
+      border-bottom: 3px solid var(--accent-red); 
     }
 
     p {
       font-weight: 400;
-      font-size: 1.1rem;
-      opacity: 0.85;
+      font-size: 1rem;
       color: var(--ink);
-      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
     }
 
     .links {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column; /* Butonları alt alta diziyoruz */
       gap: 1rem;
     }
 
@@ -76,39 +92,44 @@
       text-decoration: none;
       color: var(--ink);
       border: 2px solid var(--ink);
-      padding: 0.7rem 1.5rem;
-      transition: all 0.3s ease;
-      font-weight: bold;
+      padding: 0.8rem 1.5rem;
+      transition: all 0.2s ease-in-out;
+      font-weight: 700;
       letter-spacing: 1px;
+      text-transform: uppercase;
       background-color: transparent;
-      border-radius: 0; /* Shinkawa'nın keskin çizgilerini koruyoruz */
+      border-radius: 0;
     }
 
     .links a:hover {
-      background-color: var(--dusk);
-      border-color: var(--dusk);
-      color: var(--sand); /* Üzerine gelince metin rengi arka planla aynı oluyor */
+      background-color: var(--ink);
+      color: var(--paper);
+      transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
     }
 
     footer {
       position: absolute;
-      bottom: 1.5rem;
+      bottom: 1rem;
       font-size: 0.8rem;
-      color: var(--ink);
-      opacity: 0.6;
-      letter-spacing: 0.5px;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <h1>Murat Can Sarıyıldız</h1>
-  <p>Game Design Student · Video Game Enthusiast</p>
-  <div class="links">
-    <a href="https://flowkareinxd.itch.io" target="_blank">itch.io</a>
-    <a href="https://github.com/muratti216" target="_blank">GitHub</a>
-    <!-- Unutma: Buradaki linki kendi LinkedIn profil linkinle değiştirmelisin! -->
-    <a href="https://www.linkedin.com/in/muratcan-sarıyıldız-189404364/" target="_blank">LinkedIn</a>
+
+  <div class="content-box">
+    <h1>Murat Can Sarıyıldız</h1>
+    <p>Game Design Student · Video Game Enthusiast</p>
+    <div class="links">
+      <a href="https://flowkareinxd.itch.io" target="_blank">itch.io</a>
+      <a href="https://github.com/muratti216" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/muratcan-sarıyıldız-189404364/" target="_blank">LinkedIn</a>
+    </div>
   </div>
+
   <footer>© 2025 Murat Can Sarıyıldız</footer>
+
 </body>
 </html>
