@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Murat Can Sarıyıldız | Game Designer</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap');
+    /* Shinkawa'nın grafiksel hissiyatı için fontlar */
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400&display=swap');
 
     :root {
-      --sky: #a8d0f0;
-      --sunset: #ffb4b4;
-      --night: #0d1b2a;
-      --ink: #1a1a1a;
-      --light: #f6f6f6;
-      --gray: #b8b8b8;
-      --accent: #2c6975;
+      /* Nagai'den ilham alan bir gece/şehir paleti */
+      --night-sky: #0d1b2a; /* Derin gece mavisi */
+      --city-light: #f1faee; /* Şehir ışıkları gibi sıcak beyaz */
+      --ink-black: #1d3557; /* Shinkawa'nın mürekkep siyahına yakın bir ton */
+      --accent: #e63946;   /* Vurgulu, dikkat çekici bir renk */
+      --hover-bg: #457b9d;   /* Butonların üzerine gelinceki arka plan */
     }
 
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: linear-gradient(180deg, var(--sky), var(--sunset));
-      color: var(--ink);
+      font-family: 'Roboto', sans-serif; /* Okunabilirlik için temiz bir font */
+      background-color: var(--night-sky);
+      color: var(--city-light);
       margin: 0;
-      padding: 0;
+      padding: 0 20px; /* Kenarlara boşluk ekledik */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -30,57 +30,10 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
+      position: relative; /* Doku katmanı için gerekli */
     }
 
-    h1 {
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: 2px;
-      color: var(--night);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-weight: 400;
-      font-size: 1rem;
-      opacity: 0.9;
-      color: var(--ink);
-      margin-bottom: 2rem;
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-
-    .links a {
-      text-decoration: none;
-      color: var(--ink);
-      border: 1px solid var(--ink);
-      padding: 0.6rem 1.2rem;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-
-    .links a:hover {
-      background-color: var(--ink);
-      color: var(--light);
-      box-shadow: 0 0 15px var(--gray);
-    }
-
-    footer {
-    bottom: 1rem;
-    font-size: 0.8rem;
-    color: rgba(13, 27, 42, 0.85); /* koyu lacivert – gece tonunda */
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.3); /* gradient üzerinde hafif parlama */
-    letter-spacing: 0.5px;
-    }
-
-    /* Hafif grain efekti (nostaljik film dokusu) */
+    /* Shinkawa'nın dokulu çizimlerine gönderme yapan grain efekti */
     body::before {
       content: "";
       position: absolute;
@@ -89,8 +42,64 @@
       width: 100%;
       height: 100%;
       background-image: url("https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png");
-      opacity: 0.15;
+      opacity: 0.1; /* Daha ince bir doku için opaklık düşürüldü */
       pointer-events: none;
+      z-index: -1;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif; /* Grafiksel, keskin başlık fontu */
+      font-size: 3.5rem;
+      letter-spacing: 4px;
+      color: var(--city-light);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent); /* Shinkawa tarzı vurgulu çizgi */
+      padding-bottom: 0.5rem;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 1.1rem;
+      opacity: 0.85;
+      color: var(--city-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: var(--city-light);
+      border: 2px solid var(--city-light);
+      padding: 0.7rem 1.5rem;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      letter-spacing: 1px;
+      background-color: transparent;
+      /* Keskin, geometrik butonlar */
+      border-radius: 0; 
+    }
+
+    .links a:hover {
+      background-color: var(--hover-bg);
+      border-color: var(--hover-bg);
+      color: var(--city-light);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    footer {
+      position: absolute; /* Sayfanın altına sabitleme */
+      bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--city-light);
+      opacity: 0.6;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
@@ -100,7 +109,8 @@
   <div class="links">
     <a href="https://flowkareinxd.itch.io" target="_blank">itch.io</a>
     <a href="https://github.com/muratti216" target="_blank">GitHub</a>
-    <a href="mailto:flowkareinxd@gmail.com">E-posta</a>
+    <!-- DİKKAT: Buradaki linki kendi LinkedIn profil linkinle değiştirmelisin! -->
+    <a href="https://www.linkedin.com/in/muratcan-sarıyıldız-189404364/" target="_blank">LinkedIn</a>
   </div>
   <footer>© 2025 Murat Can Sarıyıldız</footer>
 </body>
