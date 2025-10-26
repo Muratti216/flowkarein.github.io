@@ -5,47 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Murat Can Sarıyıldız | Game Designer</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap');
+
+    :root {
+      --sky: #a8d0f0;
+      --sunset: #ffb4b4;
+      --night: #0d1b2a;
+      --ink: #1a1a1a;
+      --light: #f6f6f6;
+      --gray: #b8b8b8;
+      --accent: #2c6975;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #cce0ff; /* Hiroshi Nagai mavi tonları */
-      color: #0a0a0a;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(180deg, var(--sky), var(--sunset));
+      color: var(--ink);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      text-align: center;
+      overflow: hidden;
     }
+
     h1 {
-      font-weight: 400;
-      font-size: 2rem;
+      font-weight: 600;
+      font-size: 2.2rem;
       letter-spacing: 2px;
+      color: var(--night);
+      text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
+
     p {
+      font-weight: 400;
       font-size: 1rem;
-      opacity: 0.8;
+      opacity: 0.9;
+      color: var(--ink);
       margin-bottom: 2rem;
     }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
     .links a {
       text-decoration: none;
-      color: #0a0a0a;
-      border: 1px solid #0a0a0a;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      margin: 0.3rem;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
       transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
     }
+
     .links a:hover {
-      background-color: #0a0a0a;
-      color: #cce0ff;
+      background-color: var(--ink);
+      color: var(--light);
+      box-shadow: 0 0 15px var(--gray);
     }
+
     footer {
       position: absolute;
       bottom: 1rem;
       font-size: 0.8rem;
-      opacity: 0.6;
+      color: var(--gray);
+    }
+
+    /* Hafif grain efekti (nostaljik film dokusu) */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png");
+      opacity: 0.15;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -53,9 +97,9 @@
   <h1>Murat Can Sarıyıldız</h1>
   <p>Game Design Student · Video Game Enthusiast</p>
   <div class="links">
-    <a href="https://flowkareinxd.itch.io/" target="_blank">itch.io</a>
+    <a href="https://flowkareinxd.itch.io" target="_blank">itch.io</a>
     <a href="https://github.com/muratti216" target="_blank">GitHub</a>
-    <a href="flowkareinxd@gmail.com">E-posta</a>
+    <a href="mailto:flowkareinxd@gmail.com">E-posta</a>
   </div>
   <footer>© 2025 Murat Can Sarıyıldız</footer>
 </body>
