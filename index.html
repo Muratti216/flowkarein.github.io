@@ -1,135 +1,202 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Murat Can Sarıyıldız | Game Designer</title>
+  <meta name="description" content="Murat Can Sarıyıldız — Game Design Student. Projeler, CV ve iletişim."> 
+  <!-- Kullanıcı tarafından belirtilen avatar dosyasını favicon olarak da kullandım -->
+  <link rel="icon" href="/assets/84ae33e58f1fd27c12ff10dd3ee0078a49d046b120a3387b93c3e911afe3d7aa.jpg" type="image/jpeg"> 
   <style>
-    /* Shinkawa'nın keskin UI tasarımlarından ilham alan font */
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
 
-    :root {
-      /* Hiroshi Nagai'nin gün batımı paleti */
+    :root{
       --sky-glow: #fde4a3;
       --sunset: #ff9a8d;
       --ocean: #4b6cb7;
-      
-      /* Yoji Shinkawa'nın mürekkep ve kağıt paleti */
-      --paper: rgba(244, 241, 222, 0.85); /* Hafif şeffaf kağıt */
-      --ink: #2a2a2a; /* Tam siyah değil, soluk mürekkep */
-      --accent-red: #c94242; /* Shinkawa'nın imza kırmızısı */
+      --paper: rgba(244, 241, 222, 0.95);
+      --ink: #2a2a2a;
+      --accent-red: #c94242;
+      --muted: rgba(42,42,42,0.6);
     }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      /* Nagai'nin ikonik gradyan arka planı */
-      background: linear-gradient(180deg, var(--sky-glow), var(--sunset), var(--ocean));
-      overflow: hidden;
-      position: relative;
+    html,body{ height:100%; margin:0; font-family:'Roboto',sans-serif; }
+    body{
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, var(--sky-glow) 0%, var(--sunset) 50%, var(--ocean) 100%);
+      overflow:auto;
+      padding:40px 20px;
     }
 
-    /* Shinkawa'nın fırça darbelerini andıran doku efekti */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("https://www.transparenttextures.com/patterns/washi.png"); /* Japon kağıdı dokusu */
-      opacity: 0.2;
-      pointer-events: none;
-      z-index: 0;
+    .moving-gradient{ position:fixed; inset:0; z-index:0; pointer-events:none; mix-blend-mode:soft-light; opacity:0.6;
+      background: radial-gradient(600px 300px at 10% 20%, rgba(255,200,120,0.18), transparent 15%),
+                  radial-gradient(500px 250px at 90% 80%, rgba(120,160,255,0.14), transparent 12%);
+      animation: gradientShift 12s linear infinite alternate;
+    }
+    @keyframes gradientShift{ 0%{ transform: translate3d(0,0,0) } 50%{ transform: translate3d(8%,-4%,0) } 100%{ transform: translate3d(-6%,6%,0) } }
+
+    .container{
+      position:relative; z-index:2;
+      width:min(1100px, 96%); max-width:1100px;
+      display:grid; grid-template-columns: 360px 1fr; gap:2rem;
+      align-items:start;
     }
 
-    .content-box {
-      background: var(--paper);
-      border: 2px solid var(--ink);
-      padding: 2rem 3rem;
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(4px); /* Arka planı hafifçe bulanıklaştırır */
-      position: relative;
-      z-index: 1;
+    .profile{
+      background:var(--paper); border:2px solid var(--ink);
+      padding:1.6rem; box-shadow:0 8px 24px rgba(0,0,0,0.16); backdrop-filter: blur(6px);
+      display:flex; flex-direction:column; gap:1rem; align-items:center; text-align:center;
     }
 
-    h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
-      letter-spacing: 3px;
-      color: var(--ink);
-      text-transform: uppercase;
-      margin: 0 0 0.5rem 0;
-      padding-bottom: 0.5rem;
-      /* Shinkawa'nın grafiksel vurgu çizgisi */
-      border-bottom: 3px solid var(--accent-red); 
+    .avatar{
+      width:140px; height:140px; border-radius:50%; overflow:hidden; border:3px solid var(--accent-red);
+      display:block; background:linear-gradient(180deg,#fff,#eee);
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    h1{ font-family:'Bebas Neue',sans-serif; font-size:2.1rem; margin:0; letter-spacing:2px; color:var(--ink); text-transform:uppercase; }
+    .role{ color:var(--muted); font-weight:500; margin-bottom:4px; }
+
+    .socials{ display:flex; gap:0.5rem; margin-top:6px; flex-wrap:wrap; justify-content:center; }
+    .btn{
+      display:inline-flex; gap:0.6rem; align-items:center; justify-content:center;
+      padding:0.55rem 0.8rem; border:2px solid var(--ink); text-decoration:none; color:var(--ink); font-weight:700;
+      text-transform:uppercase; font-size:0.85rem; transition:all .18s ease;
+      background:transparent;
+    }
+    .btn svg{ width:18px; height:18px; display:block; }
+
+    .btn:hover{ background:var(--ink); color:var(--paper); transform:translateY(-3px); }
+
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.88));
+      border:2px solid var(--ink); padding:1.6rem; box-shadow:0 8px 24px rgba(0,0,0,0.12); backdrop-filter: blur(4px);
     }
 
-    p {
-      font-weight: 400;
-      font-size: 1rem;
-      color: var(--ink);
-      opacity: 0.9;
-      margin-bottom: 2rem;
+    .intro{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+    .bio{ color:var(--ink); margin:0; font-size:0.98rem; }
+    .cta-links{ display:flex; gap:0.6rem; flex-wrap:wrap; }
+
+    .projects{ display:grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
+    .project{
+      background:linear-gradient(180deg, #fff, #fafafa); border:1px solid rgba(42,42,42,0.06);
+      padding:0.6rem; display:flex; flex-direction:column; gap:0.6rem; align-items:stretch;
+    }
+    .thumb{ width:100%; height:110px; background:#ddd; display:block; overflow:hidden; border-radius:4px; }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .proj-title{ font-weight:700; font-size:0.92rem; color:var(--ink); margin:0; }
+    .proj-meta{ font-size:0.82rem; color:var(--muted); }
+
+    footer.site-footer{ margin-top:6px; font-size:0.86rem; color:var(--muted); display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; justify-content:center; }
+
+    .icon-left{ display:inline-flex; margin-right:6px; vertical-align:middle; }
+    .small{ font-size:0.85rem; color:var(--muted); }
+
+    .btn[disabled], .btn.disabled {
+      opacity:0.5; cursor:not-allowed; transform:none; pointer-events:none;
     }
 
-    .links {
-      display: flex;
-      flex-direction: column; /* Butonları alt alta diziyoruz */
-      gap: 1rem;
-    }
-
-    .links a {
-      text-decoration: none;
-      color: var(--ink);
-      border: 2px solid var(--ink);
-      padding: 0.8rem 1.5rem;
-      transition: all 0.2s ease-in-out;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background-color: transparent;
-      border-radius: 0;
-    }
-
-    .links a:hover {
-      background-color: var(--ink);
-      color: var(--paper);
-      transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
-    }
-
-    footer {
-      position: absolute;
-      bottom: 1rem;
-      font-size: 0.8rem;
-      color: white;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      z-index: 2;
+    @media (max-width:900px){
+      .container{ grid-template-columns: 1fr; }
+      .avatar{ width:120px; height:120px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="content-box">
-    <h1>Murat Can Sarıyıldız</h1>
-    <p>Game Design Student · Video Game Enthusiast</p>
-    <div class="links">
-      <a href="https://flowkareinxd.itch.io" target="_blank">itch.io</a>
-      <a href="https://github.com/muratti216" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/muratcan-sarıyıldız-189404364/" target="_blank">LinkedIn</a>
-    </div>
+  <div class="moving-gradient" aria-hidden="true"></div>
+
+  <div class="container" role="main">
+    <!-- LEFT: profil + sosyal -->
+    <aside class="profile" aria-label="Profil">
+      <a class="avatar" href="#" aria-hidden="true">
+        <!-- Kullanıcı tarafından sağlanan avatar dosyasını yerleştirdim -->
+        <img src="/assets/84ae33e58f1fd27c12ff10dd3ee0078a49d046b120a3387b93c3e911afe3d7aa.jpg" alt="Murat Can Sarıyıldız — fotoğrafı"> 
+      </a>
+      <h1>Murat Can Sarıyıldız</h1>
+      <div class="role">Game Design Student · Video Game Enthusiast</div>
+
+      <div class="socials" aria-label="Sosyal bağlantılar">
+        <a class="btn" href="https://flowkareinxd.itch.io" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2 2 6.477 2 12z" fill="#111"/></svg>
+          itch.io
+        </a>
+
+        <a class="btn" href="https://github.com/muratti216" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 .5C5.73.5.9 5.33.9 11.56c0 4.63 3 8.55 7.17 9.94.52.1.71-.23.71-.5v-1.8c-2.92.64-3.54-1.4-3.54-1.4-.48-1.25-1.17-1.58-1.17-1.58-.96-.66.07-.65.07-.65 1.06.08 1.62 1.09 1.62 1.09.94 1.6 2.48 1.14 3.08.87.09-.68.37-1.14.67-1.4-2.33-.27-4.78-1.17-4.78-5.2 0-1.15.41-2.09 1.09-2.83-.11-.27-.48-1.36.1-2.83 0 0 .89-.28 2.92 1.08a10.08 10.08 0 0 1 2.66-.36c.9 0 1.8.12 2.66.36 2.03-1.36 2.92-1.08 2.92-1.08.58 1.47.21 2.56.1 2.83.68.74 1.09 1.68 1.09 2.83 0 4.04-2.46 4.93-4.8 5.19.38.33.72.98.72 1.98v2.94c0 .28.19.61.72.5A11.52 11.52 0 0 0 23.1 11.56C23.1 5.33 18.27.5 12 .5z" fill="#111"/></svg>
+          GitHub
+        </a>
+
+        <a class="btn" href="https://www.linkedin.com/in/muratcan-sarıyıldız-189404364/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 11-.001 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3zM9 9h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05C21.76 8.59 23 10.9 23 14.58V21H18v-6.02c0-1.44-.03-3.3-2.01-3.3-2.01 0-2.32 1.57-2.32 3.2V21H9V9z" fill="#111"/></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <footer class="site-footer"> 
+        <div class="small">© 2025 Murat Can Sarıyıldız</div>
+        <div class="small">•</div>
+        <!-- Kullanıcının talebine göre: CV henüz eklenmedi şeklinde gösteriliyor -->
+        <div class="small">CV dosyanız henüz eklenmedi</div>
+      </footer>
+    </aside>
+
+    <!-- RIGHT: panel with kısa bio + projeler -->
+    <section class="panel" aria-label="Projeler ve bağlantılar">
+      <div class="intro">
+        <p class="bio">Ben Murat — oyun tasarımı üzerine eğitim alıyorum. Burada küçük projelerim, kaynaklar ve iletişim bilgilerim olacak. Projeleri daha sonra ekleyeceğim — yorumlar saklı (unutma).</p>
+        <div class="cta-links">
+          <!-- CV butonu pasif; kullanıcı CV eklemediği için disabled -->
+          <a class="btn disabled" href="#" aria-disabled="true" title="CV henüz eklenmedi"> 
+            <svg viewBox="0 0 24 24" class="icon-left" aria-hidden="true"><path d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#111"/></svg>
+            CV (henüz eklenmedi)
+          </a>
+
+          <!-- E-posta şu an boş bırakıldı; daha sonra eklenecek -->
+          <span class="small" title="E-posta adresi henüz eklenmedi">E-posta: (henüz eklenmedi)</span>
+        </div>
+      </div>
+
+      <h2 style="margin:0 0 0.6rem 0; font-size:1.05rem; color:var(--ink);">Öne Çıkan Projeler</h2>
+
+      <!--
+        Projeler şu an boş bırakıldı, kullanıcı daha sonra ekleyecek.
+        Buraya eklemek için her proje için:
+        - küçük görsel: /assets/project-xxx.jpg
+        - başlık
+        - kısa meta (etiketler)
+        Örnek proje kartlarını yorum satırı olarak bıraktım; açıp düzenleyebilirsin.
+      -->
+
+      <div class="projects" aria-live="polite">
+        <!--
+        <article class="project" aria-label="Project FlowKare">
+          <a class="thumb" href="https://flowkareinxd.itch.io" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/project-flowkare.jpg" alt="FlowKare oyunundan ekran görüntüsü">
+          </a>
+          <div>
+            <p class="proj-title">FlowKare (itch.io)</p>
+            <p class="proj-meta">Hızlı prototip · Bulmaca / Fizik</p>
+          </div>
+        </article>
+        -->
+        <!-- Henüz proje yok — daha sonra ekle -->
+      </div>
+
+    </section>
   </div>
 
-  <footer>© 2025 Murat Can Sarıyıldız</footer>
-
+  <script>
+    /* Görsel hatalarında placeholder gösterme (mevcut avatar dosyası yoksa bu devreye girer) */
+    (function(){
+      const imgs = document.querySelectorAll('img');
+      imgs.forEach(img => {
+        img.onerror = () => {
+          img.onerror = null;
+          img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23888" font-size="28">Görsel yok</text></svg>';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
